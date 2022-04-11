@@ -16,6 +16,14 @@ class CarController extends Controller<Car> {
 
   get route() { return this._route; }
 
+  checkId = (id: string): boolean => {
+    const MIN_CHARACTER = 24;
+    if (id.length !== MIN_CHARACTER) {
+      return false;
+    }
+    return true;
+  };
+
   create = async (
     req: RequestWithBody<Car>,
     res: Response<Car | ResponseError>,
@@ -40,6 +48,8 @@ class CarController extends Controller<Car> {
     res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
     const { id } = req.params;
+    const isHexa = this.checkId(id);
+    if (!isHexa) return res.status(400).json({ error: this.errors.requiredId });
     try {
       const car = await this.service.readOne(id);
       return car
@@ -56,11 +66,16 @@ class CarController extends Controller<Car> {
   ): Promise<typeof res> => {
     const { id } = req.params;
     const { body } = req;
+    const isHexa = this.checkId(id);
+    if (!isHexa) return res.status(400).json({ error: this.errors.requiredId });
     try {
       const car = await this.service.update(id, body);
-      return car
-        ? res.json(car)
-        : res.status(404).json({ error: this.errors.notFound });
+
+      if (!car) return res.status(404).json({ error: this.errors.notFound });
+
+      if ('error' in car) return res.status(400).json(car);
+
+      return res.status(201).json(car);
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
     }
@@ -71,10 +86,12 @@ class CarController extends Controller<Car> {
     res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
     const { id } = req.params;
+    const isHexa = this.checkId(id);
+    if (!isHexa) return res.status(400).json({ error: this.errors.requiredId });
     try {
       const car = await this.service.delete(id);
       return car
-        ? res.json(car)
+        ? res.status(204).send()
         : res.status(404).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
