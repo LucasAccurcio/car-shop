@@ -4,7 +4,9 @@ import { Model } from '../interfaces/ModelInterface';
 abstract class MongoModel<T> implements Model<T> {
   constructor(protected model: M<T & Document>) { }
 
-  create = async (obj: T): Promise<T> => this.model.create({ ...obj });
+  create = async (obj: T): Promise<T> => this.model.create(
+    { ...obj },
+  );
 
   read = async (): Promise<T[]> => this.model.find();
 
@@ -12,7 +14,11 @@ abstract class MongoModel<T> implements Model<T> {
     this.model.findOne({ _id: id });
 
   update = async (id: string, obj: T): Promise<T | null> => 
-    this.model.findOneAndUpdate({ _id: id }, { ...obj }, { new: true });
+    this.model.findOneAndUpdate(
+      { _id: id },
+      { ...obj },
+      { new: true, versionKey: false },
+    );
   
   delete = async (id: string): Promise<T | null> =>
     this.model.findOneAndDelete({ _id: id });

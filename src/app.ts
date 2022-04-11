@@ -9,11 +9,12 @@ class App {
     this.app.use(express.json());
   }
 
-  public startServer(PORT: string | number = 3001): void {
+  public startServer(port: string | number = 3001): void {
     connectToDatabase();
+    const actualPort = process.env.PORT || port;
     this.app.listen(
-      PORT,
-      () => console.log(`Server running here 👉 http://localhost:${PORT}`),
+      actualPort,
+      () => console.log(`Server running here 👉 http://localhost:${actualPort}`),
     );
   }
 

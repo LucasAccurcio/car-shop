@@ -1,26 +1,17 @@
-import express, { Router } from 'express';
-import connectToDatabase from './connection';
+import CustomRouter from './routes/router';
+import App from './app';
 
-class App {
-  private app: express.Application;
+import CarController from './controllers/Car';
 
-  constructor() {
-    this.app = express();
-    this.app.use(express.json());
-  }
+import { Car } from './interfaces/CarInterface';
 
-  public startServer(port = 3001) {
-    connectToDatabase();
-    const actualPort = process.env.PORT || port;
-    return this.app.listen(
-      actualPort,
-      () => console.log('Estamos online na porta: ', actualPort),
-    );
-  }
+const server = new App();
 
-  public addRouter(router: Router) {
-    this.app.use(router);
-  }
-}
+const carController = new CarController();
 
-export default App;
+const carRouter = new CustomRouter<Car>();
+carRouter.addRoute(carController);
+
+server.addRouter(carRouter.router);
+
+export default server;
