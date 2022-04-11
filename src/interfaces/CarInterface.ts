@@ -1,14 +1,15 @@
 import { z } from 'zod';
-import { Vehicle } from './VehicleInterface';
+import VehicleSchema from './VehicleInterface';
 
-const CarSchema = z.object({
+const CarBaseSchema = z.object({
   doorsQty: z.number().gte(2).lte(4),
   seatsQty: z.number().gte(2).lte(7),
 });
 
-type CarBase = z.infer<typeof CarSchema>;
+type CarBase = z.infer<typeof CarBaseSchema>;
 
-type Car = CarBase & Vehicle;
+const CarSchema = VehicleSchema.merge(CarBaseSchema);
+type Car = z.infer<typeof CarSchema>;
 
 export { CarBase, Car };
 export default CarSchema;
