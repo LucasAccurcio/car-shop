@@ -1,12 +1,9 @@
-/* import { expect } from 'chai';
+import { expect } from 'chai';
 import mongoose from 'mongoose';
 import * as sinon from 'sinon';
 import data from '../mocks/data';
 
 import CarModel from '../../../models/Car';
-import MongoModel from '../../../models/MongoModel';
-// import MotorcycleModel from '../../../models/Motorcycle';
-
 
 describe('Teste da camada CarModel', () => {
   const carModel = new CarModel();
@@ -61,14 +58,13 @@ describe('Teste da camada CarModel', () => {
   });
 
   describe('Car - função Create', () => {
-    const stub = sinon.stub(mongoose.Model, 'create')
-      .resolves(data.created);
-
+    sinon.stub(mongoose.Model, 'create')
+      .resolves(data.created)
+    
     it('deveria cadastrar um novo veículo no banco de dados', async () => {
       const result = await carModel.create(data.create);
 
       expect(result).to.be.equal(data.created);
     });
-    // stub.restore();
   });
-}); */
+});
