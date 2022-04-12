@@ -79,4 +79,34 @@ describe('Teste da camada CarService', () => {
       stub.restore();
     });
   });
+
+  describe('Car - função Create', () => {
+    describe('Erros de validação dos dados', () => {
+      it('deveria retornar um erro, ano maior que o permitido', async () => {
+        const result = await carService.create({ ...data.objUpdate, year: 3022 });
+        expect(result).to.be.have.a.property('error');
+      });
+
+      it('deveria retornar um erro, model tem menos de 3 caracteres', async () => {
+        const result = await carService.create({ ...data.objUpdate, model: 'ab' });
+        expect(result).to.be.have.a.property('error');
+      });
+
+      it('deveria retornar um erro, color tem menos de 3 caracteres', async () => {
+        const result = await carService.create({ ...data.objUpdate, color: 'ab' });
+        expect(result).to.be.have.a.property('error');
+      });
+    });
+
+    describe('Criação com sucesso', () => {
+      const stub = sinon.stub(carService, 'create').resolves(data.created);
+
+      it('deveria gravar os dados no banco de dados', async () => {
+        const result = await carService.create(data.create);
+
+        expect(result).to.be.equal(data.created);
+      });
+      stub.restore();
+    });
+  });
 });
