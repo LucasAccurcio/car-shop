@@ -1,11 +1,12 @@
-import { expect } from 'chai';
+/* import { expect } from 'chai';
 import mongoose from 'mongoose';
 import * as sinon from 'sinon';
-import data from './mocks/data';
+import data from '../mocks/data';
 
 import CarModel from '../../../models/Car';
-import MotorcycleModel from '../../../models/Motorcycle';
 import MongoModel from '../../../models/MongoModel';
+// import MotorcycleModel from '../../../models/Motorcycle';
+
 
 describe('Teste da camada CarModel', () => {
   const carModel = new CarModel();
@@ -50,12 +51,24 @@ describe('Teste da camada CarModel', () => {
     const id = '6254d007034e807781e282fd';
     
     sinon.stub(mongoose.Model, 'findOneAndUpdate')
-      .resolves(data.update);
+      .resolves(data.updated);
 
     it('deveria atualizar os dados gravados no banco de dados', async () => {
       const result = await carModel.update(id, data.objUpdate);
 
-      expect(result).to.be.equal(data.update);
+      expect(result).to.be.equal(data.updated);
     });
   });
-});
+
+  describe('Car - função Create', () => {
+    const stub = sinon.stub(mongoose.Model, 'create')
+      .resolves(data.created);
+
+    it('deveria cadastrar um novo veículo no banco de dados', async () => {
+      const result = await carModel.create(data.create);
+
+      expect(result).to.be.equal(data.created);
+    });
+    // stub.restore();
+  });
+}); */

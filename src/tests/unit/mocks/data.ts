@@ -7,6 +7,15 @@ const data = {
     seatsQty: 2,
     doorsQty: 2
   },
+  created: {
+    _id: "6254d007034e807781e282fd",
+    model: "Ferrari Maranello",
+    year: 1963,
+    color: "red",
+    buyValue: 3500000,
+    seatsQty: 2,
+    doorsQty: 2
+  },
   find: [{
     _id: "6254d007034e807781e282fd",
     model: "Ferrari Maranello",
@@ -33,7 +42,7 @@ const data = {
     seatsQty: 2,
     doorsQty: 2
   },
-  update: {
+  updated: {
     _id: "6254d007034e807781e282fd",
     model: "Ferrari Maranello",
     year: 1963,
