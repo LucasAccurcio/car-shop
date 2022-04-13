@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import VehicleSchema from './VehicleInterface';
 
-const VALUES = ['Street', 'Custom', 'Trail'] as const;
+// const VALUES = ['Street', 'Custom', 'Trail'];
 
 const MotorcycleBaseSchema = z.object({
-  category: z.enum(VALUES),
+  category: z.enum(['Street', 'Custom', 'Trail']),
   engineCapacity: z.number().int().positive().lte(2500),
 });
 
