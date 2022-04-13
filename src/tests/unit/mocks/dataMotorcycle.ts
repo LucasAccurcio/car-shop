@@ -1,3 +1,5 @@
+import { Motorcycle } from "../../../interfaces/MotorcycleInterface";
+
 const data = {
   create: {
     model: "Triumph Street",
