@@ -1,4 +1,4 @@
-# Projeto Car Shop :red_car:
+# Projeto Car Shop :racing_car:
 
 ## Contexto :selfie:
 
@@ -73,34 +73,44 @@ Neste projeto, consegui desenvolver as seguintes habilidades:
   - Para criar um novo veículo no banco de dados, acesse:
     * POST http://localhost:3001/cars
     
-    `body: {
+    ```sh
+    body: {
       "model": "GM Tracker",
       "year": 2022,
       "color": "black",
       "buyValue": 120000,
       "seatsQty": 5,
       "doorsQty": 4
-    }`
+    }
+    ```
 
   - Para visualizar apenas um veículo específico, acesse:
     * http://localhost:3001/cars/id, onde id seria o id do veículo no banco de dados.
+
       Exemplo: GET http://localhost:3001/cars/62577ca7a555d8ae1da3544e
+
 
   - Para atualizar um veículos especifício, acesse:
     * PUT http://localhost:3001/cars/id
+
       Exemplo: PUT http://localhost:3001/cars/625776f0e0470e2212e53261
 
-    `body: {
+    ```sh
+    body: {
       "model": "Ford Focus",
       "color": "black",
       "buyValue": 80000,
       "doorsQty": 4,
       "seatsQty": 5
-    }`
+    }
+    ```
+
 
   - Para deletar um veículo específico, acesse:
     * DELETE http://localhost:3001/cars/id
+
       Exemplo: DELETE http://localhost:3001/cars/625776f0e0470e2212e53261
+
 
   - Outras rotas disponíves:
   * GET http://localhost:3001/motorcycles
@@ -109,7 +119,8 @@ Neste projeto, consegui desenvolver as seguintes habilidades:
   * PUT http://localhost:3001/motorcycles/id
   * DELETE http://localhost:3001/motorcycles/id
 
-6. Rodando os Testes do projeto:
+
+7. Rodando os Testes do projeto:
   - Apenas os testes:
     * npm run test:dev
 
