@@ -1,0 +1,33 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data/db
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=user
+      - MONGODB_INITDB_ROOT_PASSWORD=pass
+    networks:
+      - app-network
+
+  app-carshop:
+    build:
+      context: .
+    container_name: app-carshop
+    depends_on:
+      - mongodb
+    ports:
+      - '3001:3001'
+    environment:
+      MONGO_URI: mongodb://localhost:27017/CarShop
+      PORT: 3001
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
