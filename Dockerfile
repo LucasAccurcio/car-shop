@@ -17,8 +17,8 @@ WORKDIR /usr/src/app
 
 COPY --from=build /usr/src/app/package.json ./package.json
 COPY --from=build /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/dist ./
 
 EXPOSE 3001
 
-CMD ["node", "run", "start:prod"]
+CMD ["node", "./index.js"]

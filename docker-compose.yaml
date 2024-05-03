@@ -5,9 +5,7 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - type: bind
-        source: ./data
-        target: /data/db
+      - db:/data/db
     environment:
       - MONGODB_INITDB_ROOT_USERNAME=user
       - MONGODB_INITDB_ROOT_PASSWORD=pass
@@ -31,3 +29,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  db:
