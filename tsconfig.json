@@ -1,20 +1,14 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "target": "es2019",
-    "module": "commonjs",
-    "include": ["src/**/*"],
-    "typeRoots": [
-      "src/@types",
-      "./node_modules/@types"
-    ],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"target": "es2019",
+		"module": "commonjs",
+		"typeRoots": ["src/@types", "./node_modules/@types"],
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true
+	},
+	"exclude": ["node_modules"]
 }
