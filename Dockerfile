@@ -2,7 +2,7 @@ FROM node:18 AS build
 
 WORKDIR /usr/src/app
 
-COPY package-lock.json package.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
 
@@ -21,4 +21,4 @@ COPY --from=build /usr/src/app/dist ./dist
 
 EXPOSE 3001
 
-CMD ["npm ", "run", "start:prod"]
+CMD ["node", "run", "start:prod"]
